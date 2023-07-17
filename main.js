@@ -1,4 +1,4 @@
-const { app, BrowserWindow, electron } = require('electron')
+const { app, BrowserWindow, protocol } = require('electron')
 const isDev = require('electron-is-dev')
 const path = require('path')
 
@@ -6,7 +6,7 @@ const createWindow = () => {
   const WEB_FOLDER = 'web'
   const PROTOCOL = 'file'
 
-  electron.protocol.interceptFileProtocol(PROTOCOL, (request, callback) => {
+  protocol.interceptFileProtocol(PROTOCOL, (request, callback) => {
     // // Strip protocol
     let url = request.url.substr(PROTOCOL.length + 1)
 
