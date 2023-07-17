@@ -1,0 +1,110 @@
+:root {
+  text-size-adjust: none;
+  font-family: 'Pretendard';
+  color: #222;
+  background-color: #f8f9fa;
+}
+#root {
+  position: relative;
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+}
+p,
+h1,
+h2,
+h3 {
+  margin: 0;
+}
+div,
+label,
+article {
+  box-sizing: border-box;
+}
+a {
+  text-decoration: none;
+  color: #000;
+  cursor: pointer;
+}
+ul {
+  padding: 0;
+  margin: 0;
+}
+li {
+  list-style: none;
+}
+button {
+  cursor: pointer;
+}
+
+.toastMessage {
+  position: fixed;
+  bottom: 30px;
+  border-radius: 150px;
+  box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.2);
+  background-color: rgba(35, 36, 54, 0.9);
+  font-size: 15px;
+  color: #fff;
+  padding: 12px 25px;
+  left: 50%;
+  transform: translateX(-50%);
+  animation: toast 2s;
+  opacity: 0;
+  z-index: 9000;
+  line-height: 1.47;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+}
+@keyframes toast {
+  0% {
+    opacity: 0;
+    bottom: 30px;
+  }
+  15% {
+    opacity: 1;
+    bottom: 60px;
+  }
+  85% {
+    opacity: 1;
+    bottom: 60px;
+  }
+  100% {
+    opacity: 0;
+    bottom: 30px;
+  }
+}
+.toastMessage span {
+  max-width: calc(100vw - 60px);
+  min-width: 200px;
+  word-break: break-all;
+}
+
+select option.placeholder {
+  display: none;
+}
+/* 
+@font-face {
+  font-family: 'Pretendard';
+  src: url('../src/assets/font/Pretendard-Regular') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Pretendard_bold';
+  src: url('../src/assets/font/Pretendard-Bold') format('woff2');
+  font-weight: bold;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Pretendard_600';
+  src: url('../src/assets/font/Pretendard-SemiBold') format('woff2');
+  font-weight: 600;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Pretendard_500';
+  src: url('../src/assets/font/Pretendard-Medium') format('woff2');
+  font-weight: 500;
+  font-style: normal;
+} */
