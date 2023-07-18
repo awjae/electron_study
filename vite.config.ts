@@ -4,11 +4,17 @@ import react from '@vitejs/plugin-react'
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react()],
+  base: './',
   optimizeDeps: {
     exclude: ['main.js'],
   },
   build: {
     outDir: 'build',
+    // rollupOptions: {
+    //   output: {
+    //     format: 'cjs'
+    //   }
+    // }
   },
   /*server: {
     host: '10.80.17.120',
