@@ -1,4 +1,5 @@
 const { app, BrowserWindow } = require('electron')
+const isDev = require('electron-is-dev')
 const path = require('path')
 const url = require('url')
 
@@ -9,6 +10,9 @@ const createWindow = () => {
     // frame: true,
     // transparent: true,
     // backgroundColor: 'rgba(0, 0, 0, .8)',
+    webPreferences: {
+      nodeIntegration: true,
+    },
   })
 
   const startUrl = url.format({
