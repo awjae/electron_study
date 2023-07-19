@@ -1,4 +1,4 @@
-const { app, BrowserWindow } = require('electron')
+const { app, BrowserWindow, ipcMain, contextBridge } = require('electron')
 const isDev = require('electron-is-dev')
 const path = require('path')
 const url = require('url')
@@ -7,11 +7,12 @@ const createWindow = () => {
   const win = new BrowserWindow({
     width: 640,
     height: 480,
-    // frame: true,
-    // transparent: true,
-    // backgroundColor: 'rgba(0, 0, 0, .8)',
+    frame: false,
+    transparent: true,
+    backgroundColor: 'rgba(0, 0, 0, .8)',
     webPreferences: {
       nodeIntegration: true,
+      preload: path.join(__dirname, 'preload.cjs'),
     },
   })
 
@@ -22,6 +23,10 @@ const createWindow = () => {
   })
   win.loadURL(startUrl)
 }
+
+ipcMain.on('close', (event, data) => {
+  app.quit()
+})
 
 app.whenReady().then(() => {
   createWindow()

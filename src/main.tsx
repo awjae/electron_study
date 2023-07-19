@@ -5,6 +5,12 @@ import { BrowserRouter } from 'react-router-dom'
 import App from './App'
 import './normalize.css'
 
+declare global {
+  interface Window {
+    electron: any
+  }
+}
+
 const queryClient = new QueryClient()
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
