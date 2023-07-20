@@ -8,13 +8,13 @@ function Main() {
   }
 
   return (
-    <div>
+    <main>
       <div className={styles.closeBtn} onClick={close}>
         <img src={closeIcon} alt="" width={32} height={32} />
       </div>
       <header>헤더지롱</header>
       <main>메인이지롱</main>
-    </div>
+    </main>
   )
 }
 

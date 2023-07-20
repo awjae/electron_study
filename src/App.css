@@ -2,7 +2,7 @@
   text-size-adjust: none;
   font-family: 'Pretendard';
   color: #222;
-  background-color: #f8f9fa;
+  background-color: rgba(0, 0, 0, 0.8);
 }
 #root {
   position: relative;
