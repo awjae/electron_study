@@ -28,17 +28,25 @@ const createWindow = () => {
     slashes: true,
   })
   win.loadURL(startUrl)
+
+  eventListener(win)
 }
 
-ipcMain.on('close', (event, data) => {
-  app.quit()
-})
+const eventListener = (window) => {
+  ipcMain.on('close', (event, data) => {
+    app.quit()
+  })
+  ipcMain.on('handleAlwaysOnTop', (event, data) => {
+    window.setAlwaysOnTop(data)
+  })
+}
 
 app.whenReady().then(() => {
   createWindow()
 
   app.on('activate', () => {
     if (BrowserWindow.getAllWindows().length === 0) createWindow()
+    if (isDev) BrowserWindow.webContents.openDevTools()
   })
 })
 

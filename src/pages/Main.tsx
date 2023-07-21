@@ -7,14 +7,23 @@ function Main() {
     window.electron.ipcRenderer.send('close')
   }
 
+  const handleChangeBtn = (e: React.ChangeEvent<HTMLInputElement>) => {
+    window.electron.ipcRenderer.send('handleAlwaysOnTop', e.target.checked)
+  }
+
   return (
-    <main>
-      <div className={styles.closeBtn} onClick={close}>
-        <img src={closeIcon} alt="" width={32} height={32} />
-      </div>
-      <header>헤더지롱</header>
-      <main>메인이지롱</main>
-    </main>
+    <div>
+      <header>
+        <div className={styles.alwaysOnTopCheckBtn}>
+          <input id="alwaysOnTopInput" type="checkbox" onChange={handleChangeBtn} />
+          <label htmlFor="alwaysOnTopInput">항상 위</label>
+        </div>
+        <div className={styles.closeBtn} onClick={close}>
+          <img src={closeIcon} alt="" width={24} height={24} />
+        </div>
+      </header>
+      {/* <TodoList></TodoList> */}
+    </div>
   )
 }
 
