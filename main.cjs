@@ -10,6 +10,7 @@ const createWindow = () => {
     frame: false,
     transparent: true,
     alwaysOnTop: true,
+    backgroundColor: 'rgba(0, 0, 0, 0.3)',
     webPreferences: {
       nodeIntegration: true,
       preload: path.join(__dirname, 'preload.cjs'),
