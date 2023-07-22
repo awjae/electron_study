@@ -1,13 +1,20 @@
 import React, { useState } from 'react'
 import styles from '../styles/common.module.css'
+import List from '../_designSystem/List'
+import ListItem from '../_designSystem/ListItem'
 
 function TodoList({ list }: { list: TodoType[] }) {
   return (
-    <ul>
+    // <ul>
+    //   {list.map((item) => (
+    //     <li className={styles.todoItem}>{item.contents}</li>
+    //   ))}
+    // </ul>
+    <List>
       {list.map((item) => (
-        <li className={styles.todoItem}>{item.contents}</li>
+        <ListItem className={styles.todoItem} contents={item.contents}></ListItem>
       ))}
-    </ul>
+    </List>
   )
 }
 
