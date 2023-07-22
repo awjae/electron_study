@@ -1,8 +1,11 @@
-import React from 'react'
+import React, { useState } from 'react'
 import closeIcon from '../assets/cross-mark.png'
 import styles from '../styles/common.module.css'
+import TodoList from '../components/TodoList'
 
 function Main() {
+  const [todoList, setTodoList] = useState<TodoType[]>([{ contents: '123' }])
+
   const close = () => {
     window.electron.ipcRenderer.send('close')
   }
@@ -12,7 +15,7 @@ function Main() {
   }
 
   return (
-    <div>
+    <div className={styles.main}>
       <header>
         <div className={styles.alwaysOnTopCheckBtn}>
           <input id="alwaysOnTopInput" type="checkbox" onChange={handleChangeBtn} />
@@ -22,7 +25,7 @@ function Main() {
           <img src={closeIcon} alt="" width={24} height={24} />
         </div>
       </header>
-      {/* <TodoList></TodoList> */}
+      <TodoList list={todoList}></TodoList>
     </div>
   )
 }

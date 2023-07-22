@@ -1,0 +1,3 @@
+type TodoType = {
+  contents: string
+}

@@ -1,3 +1,9 @@
+.main {
+  padding: 10px;
+}
+.main header {
+  height: 36px;
+}
 .closeBtn {
   position: absolute;
   right: 10px;
@@ -18,4 +24,18 @@
 }
 .alwaysOnTopCheckBtn input:checked + label {
   color: dodgerblue;
+}
+
+.todoItem {
+  padding: 5px 10px;
+  display: flex;
+  align-items: center;
+  border-radius: 10px;
+  height: 40px;
+  background-color: #ffa500;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+.todoItem:hover {
+  background-color: #fec252;
+  cursor: pointer;
 }
