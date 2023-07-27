@@ -17,12 +17,13 @@
   "license": "ISC",
   "dependencies": {
     "classnames": "^2.3.2",
+    "electron-is-dev": "^2.0.0",
+    "express": "^4.18.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-query": "^3.39.3",
     "react-router-dom": "^6.10.0",
-    "zustand": "^4.3.7",
-    "electron-is-dev": "^2.0.0"
+    "zustand": "^4.3.7"
   },
   "devDependencies": {
     "@types/react": "^18.0.28",

@@ -6,7 +6,7 @@ export default defineConfig({
   plugins: [react()],
   base: './',
   optimizeDeps: {
-    exclude: ['main.js'],
+    exclude: ['main.cjs', 'server'],
   },
   build: {
     outDir: 'build',
