@@ -5,18 +5,33 @@ import { buildSchema } from 'graphql'
 var schema = buildSchema(`
   type Query {
     hello: String
+    persons: [Person]
+  }
+
+  type Person {
+    name: String
+    age: Int
   }
 `)
 
-var root = { hello: () => 'Hello world!' }
+var root = {
+  hello: () => 'Hello world!',
+  persons: () => {
+    return [
+      { name: 'kim', age: 20 },
+      { name: 'lee', age: 30 },
+      { name: 'park', age: 40 },
+    ]
+  },
+}
 
 const app = express()
 
-app.get('/', (req, res) => {
-  res.send('hello')
-})
+// app.get('/', (req, res) => {
+//   res.send('hello')
+// })
 
-app.get(
+app.use(
   '/graphql',
   graphqlHTTP({
     schema: schema,
