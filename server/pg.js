@@ -1,4 +1,5 @@
 import { Pool } from 'pg'
+import { buildSchema } from 'graphql'
 
 export const pool = new Pool({
   user: 'admin',
@@ -20,33 +21,31 @@ async function runQuery(query, params) {
   }
 }
 
-// import { buildSchema } from 'graphql';
-
 // // PostgreSQL 데이터베이스와 연동하여 스키마 정의
-// var schema = buildSchema(`
-//   type User {
-//     id: Int
-//     name: String
-//     age: Int
-//     email: String
-//   }
+export const chema = buildSchema(`
+  type User {
+    id: Int
+    name: String
+    age: Int
+    email: String
+  }
 
-//   type Query {
-//     getUser(id: Int!): User
-//     getUsers: [User]
-//   }
-// `);
+  type Query {
+    getUser(id: Int!): User
+    getUsers: [User]
+  }
+`)
 
-// var root = {
-//   getUser: async ({ id }) => {
-//     const query = 'SELECT * FROM users WHERE id = $1';
-//     const params = [id];
-//     const result = await runQuery(query, params);
-//     return result[0];
-//   },
-//   getUsers: async () => {
-//     const query = 'SELECT * FROM users';
-//     const result = await runQuery(query);
-//     return result;
-//   },
-// };
+export const userRoot = {
+  getUser: async ({ id }) => {
+    const query = 'SELECT * FROM users WHERE id = $1'
+    const params = [id]
+    const result = await runQuery(query, params)
+    return result[0]
+  },
+  getUsers: async () => {
+    const query = 'SELECT * FROM users'
+    const result = await runQuery(query)
+    return result
+  },
+}

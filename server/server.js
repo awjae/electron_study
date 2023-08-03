@@ -1,6 +1,7 @@
 import express from 'express'
 import { graphqlHTTP } from 'express-graphql'
 import { buildSchema } from 'graphql'
+import { userRoot, userSchema } from './pg'
 
 var schema = buildSchema(`
   type Query {
@@ -27,15 +28,19 @@ var root = {
 
 const app = express()
 
-// app.get('/', (req, res) => {
-//   res.send('hello')
-// })
-
 app.use(
   '/graphql',
   graphqlHTTP({
     schema: schema,
     rootValue: root,
+    graphiql: true,
+  }),
+)
+app.use(
+  '/user',
+  graphqlHTTP({
+    schema: userSchema,
+    rootValue: userRoot,
     graphiql: true,
   }),
 )
