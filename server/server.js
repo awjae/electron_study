@@ -1,9 +1,10 @@
 import express from 'express'
 import { graphqlHTTP } from 'express-graphql'
-import { buildSchema } from 'graphql'
-import { userRoot, userSchema } from './pg'
+import graphql from 'graphql';
+const { buildSchema } = graphql;
+import PgPool from './pgPool.js'
 
-var schema = buildSchema(`
+const schema = buildSchema(`
   type Query {
     hello: String
     persons: [Person]
@@ -15,7 +16,7 @@ var schema = buildSchema(`
   }
 `)
 
-var root = {
+const root = {
   hello: () => 'Hello world!',
   persons: () => {
     return [
@@ -27,6 +28,7 @@ var root = {
 }
 
 const app = express()
+const pool = new PgPool()
 
 app.use(
   '/graphql',
@@ -39,8 +41,8 @@ app.use(
 app.use(
   '/user',
   graphqlHTTP({
-    schema: userSchema,
-    rootValue: userRoot,
+    schema: pool.userSchema,
+    rootValue: pool.userRoot,
     graphiql: true,
   }),
 )
