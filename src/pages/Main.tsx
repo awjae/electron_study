@@ -1,9 +1,17 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import closeIcon from '../assets/cross-mark.png'
 import styles from '../styles/common.module.css'
 import TodoList from '../components/TodoList'
+import { useMutation, gql, useQuery } from '@apollo/client'
+
+const getHello = gql`
+  query {
+    hello
+  }
+`
 
 function Main() {
+  const { loading, error, data } = useQuery(getHello)
   const [todoList, setTodoList] = useState<TodoType[]>([{ contents: '123' }])
 
   const close = () => {
@@ -13,6 +21,10 @@ function Main() {
   const handleChangeBtn = (e: React.ChangeEvent<HTMLInputElement>) => {
     window.electron.ipcRenderer.send('handleAlwaysOnTop', e.target.checked)
   }
+
+  useEffect(() => {
+    console.log(loading, error, data)
+  }, [data, loading, error])
 
   return (
     <div className={styles.main}>

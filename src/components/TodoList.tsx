@@ -11,8 +11,8 @@ function TodoList({ list }: { list: TodoType[] }) {
     //   ))}
     // </ul>
     <List>
-      {list.map((item) => (
-        <ListItem className={styles.todoItem} contents={item.contents}></ListItem>
+      {list.map((item, idx) => (
+        <ListItem key={idx} className={styles.todoItem} contents={item.contents}></ListItem>
       ))}
     </List>
   )
