@@ -1,7 +1,7 @@
 import express from 'express'
 import { graphqlHTTP } from 'express-graphql'
-import graphql from 'graphql';
-const { buildSchema } = graphql;
+import graphql from 'graphql'
+const { buildSchema } = graphql
 import PgPool from './pgPool.js'
 
 const schema = buildSchema(`
@@ -30,6 +30,16 @@ const root = {
 const app = express()
 const pool = new PgPool()
 
+app.use((req, res, next) => {
+  res.setHeader('Access-Control-Allow-Origin', '*')
+  res.setHeader('Access-Control-Allow-Methods', 'OPTIONS, GET, POST, PUT, PATCH, DELETE')
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization')
+
+  if (req.method === 'OPTIONS') {
+    return res.sendStatus(200)
+  }
+  next()
+})
 app.use(
   '/graphql',
   graphqlHTTP({
