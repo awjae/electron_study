@@ -1,15 +1,15 @@
-
-import pg from "pg";
-const { Pool } = pg;
-import graphql from 'graphql';
-const { buildSchema } = graphql;
+import pg from 'pg'
+const { Pool } = pg
+import graphql from 'graphql'
+const { buildSchema } = graphql
 
 export default class PgPool {
   constructor() {
     this.pool = new Pool({
       host: 'svc.sel3.cloudtype.app',
       port: 30641,
-      database: 'trip_genie',
+      // database: 'trip_genie',
+      database: 'postgres',
       user: 'admin',
       password: 'admin',
     })
@@ -35,7 +35,26 @@ export default class PgPool {
       },
       getUsers: async () => {
         const query = 'SELECT * FROM users'
-        const result = await runQuery(query)
+        const result = await this.runQuery(query)
+        return result
+      },
+    }
+    this.todoListSchema = buildSchema(`
+      type TodoList {
+        no: Int
+        date: String
+        state: String
+        contents: String
+      }
+
+      type Query {
+        getTodoList: [TodoList]
+      }
+    `)
+    this.todoListRoot = {
+      getTodoList: async () => {
+        const query = `SELECT * FROM public.todolist`
+        const result = await this.runQuery(query)
         return result
       },
     }

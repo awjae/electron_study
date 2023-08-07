@@ -4,14 +4,19 @@ import styles from '../styles/common.module.css'
 import TodoList from '../components/TodoList'
 import { useMutation, gql, useQuery } from '@apollo/client'
 
-const getHello = gql`
+const getTodoList = gql`
   query {
-    hello
+    getTodoList {
+      no
+      date
+      state
+      contents
+    }
   }
 `
 
 function Main() {
-  const { loading, error, data } = useQuery(getHello)
+  const { loading, error, data } = useQuery(getTodoList)
   const [todoList, setTodoList] = useState<TodoType[]>([{ contents: '123' }])
 
   const close = () => {
