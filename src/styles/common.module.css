@@ -9,6 +9,14 @@
   right: 10px;
   top: 10px;
   cursor: pointer;
+  background-color: transparent;
+  border: none;
+}
+.addBtn {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
 }
 .alwaysOnTopCheckBtn {
   position: absolute;

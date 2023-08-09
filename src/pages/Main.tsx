@@ -14,13 +14,25 @@ const getTodoList = gql`
     }
   }
 `
+const postTodoList = gql`
+  mutation createTodoList($contents: String!) {
+    createTodoList(contents: $contents) {
+      contents
+    }
+  }
+`
 
 function Main() {
   const { loading, error, data } = useQuery(getTodoList)
   const [todoList, setTodoList] = useState<TodoType[]>([{ contents: '123' }])
+  const [createTodoList] = useMutation(postTodoList)
 
   const close = () => {
     window.electron.ipcRenderer.send('close')
+  }
+
+  const add = () => {
+    createTodoList({ variables: { contents: 'test' } })
   }
 
   const handleChangeBtn = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -38,11 +50,16 @@ function Main() {
           <input id="alwaysOnTopInput" type="checkbox" onChange={handleChangeBtn} />
           <label htmlFor="alwaysOnTopInput">항상 위</label>
         </div>
-        <div className={styles.closeBtn} onClick={close}>
+        <button className={styles.closeBtn} onClick={close}>
           <img src={closeIcon} alt="" width={24} height={24} />
-        </div>
+        </button>
       </header>
       <TodoList list={todoList}></TodoList>
+      <footer>
+        <button className={styles.addBtn} onClick={add}>
+          +
+        </button>
+      </footer>
     </div>
   )
 }

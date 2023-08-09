@@ -50,12 +50,22 @@ export default class PgPool {
       type Query {
         getTodoList: [TodoList]
       }
+
+      type Mutation {
+        createTodoList(contents: String!): TodoList
+      }
     `)
     this.todoListRoot = {
       getTodoList: async () => {
         const query = `SELECT * FROM public.todolist`
         const result = await this.runQuery(query)
         return result
+      },
+      createTodoList: async ({ contents }) => {
+        const query = `INSERT INTO public.todolist(date, state, contents) VALUES (now(), 'ready', $1)`
+        const params = [contents]
+        const result = await this.runQuery(query, params)
+        return result[0]
       },
     }
   }
