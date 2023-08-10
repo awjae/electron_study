@@ -40,6 +40,9 @@ function Main() {
   }
 
   useEffect(() => {
+    if (!loading) {
+      setTodoList(data.getTodoList)
+    }
     console.log(loading, error, data)
   }, [data, loading, error])
 
