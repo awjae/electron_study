@@ -39,11 +39,14 @@ function Main() {
     window.electron.ipcRenderer.send('handleAlwaysOnTop', e.target.checked)
   }
 
+  const handleChangeReadyOrDone = (e: React.ChangeEvent<HTMLInputElement>, item: TodoType) => {
+    console.log(e.target.checked, item)
+  }
+
   useEffect(() => {
     if (!loading) {
       setTodoList(data.getTodoList)
     }
-    console.log(loading, error, data)
   }, [data, loading, error])
 
   return (
@@ -57,7 +60,7 @@ function Main() {
           <img src={closeIcon} alt="" width={24} height={24} />
         </button>
       </header>
-      <TodoList list={todoList}></TodoList>
+      <TodoList list={todoList} handleChange={handleChangeReadyOrDone}></TodoList>
       <footer>
         <button className={styles.addBtn} onClick={add}>
           +

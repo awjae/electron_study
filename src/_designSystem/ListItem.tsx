@@ -1,14 +1,14 @@
 import { ReactNode } from 'react'
+import { PropsWithChildren } from 'react'
 
 interface ListRowProps {
   className?: string
-  contents: ReactNode
   right?: ReactNode
   withArrow?: boolean
   onClick?: () => void
 }
 
-const ListItem = ({ className, contents, onClick }: ListRowProps) => {
+const ListItem = ({ className, children, onClick }: PropsWithChildren<ListRowProps>) => {
   return (
     <li
       className={className}
@@ -19,7 +19,7 @@ const ListItem = ({ className, contents, onClick }: ListRowProps) => {
       //   `}
       onClick={onClick}
     >
-      {contents}
+      {children}
     </li>
   )
 }

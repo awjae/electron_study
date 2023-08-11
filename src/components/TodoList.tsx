@@ -3,7 +3,7 @@ import styles from '../styles/common.module.css'
 import List from '../_designSystem/List'
 import ListItem from '../_designSystem/ListItem'
 
-function TodoList({ list }: { list: TodoType[] }) {
+function TodoList({ list, handleChange }: { list: TodoType[]; handleChange: Function }) {
   return (
     // <ul>
     //   {list.map((item) => (
@@ -12,7 +12,10 @@ function TodoList({ list }: { list: TodoType[] }) {
     // </ul>
     <List>
       {list.map((item, idx) => (
-        <ListItem key={idx} className={styles.todoItem} contents={item.contents}></ListItem>
+        <ListItem key={idx} className={styles.todoItem}>
+          <span>{item.contents}</span>
+          <input type="checkbox" onChange={(e) => handleChange(e, item)} />
+        </ListItem>
       ))}
     </List>
   )
