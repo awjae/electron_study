@@ -21,11 +21,20 @@ const postTodoList = gql`
     }
   }
 `
+const patchTodo = gql`
+  mutation updateTodo($no: Number!, $state: String!) {
+    updateTodo(no: $no, state: $state) {
+      no
+      state
+    }
+  }
+`
 
 function Main() {
   const { loading, error, data } = useQuery(getTodoList)
   const [todoList, setTodoList] = useState<TodoType[]>([{ contents: '123' }])
   const [createTodoList] = useMutation(postTodoList)
+  const [updateTodo] = useMutation(patchTodo)
 
   const close = () => {
     window.electron.ipcRenderer.send('close')
@@ -40,7 +49,9 @@ function Main() {
   }
 
   const handleChangeReadyOrDone = (e: React.ChangeEvent<HTMLInputElement>, item: TodoType) => {
-    console.log(e.target.checked, item)
+    e.target.checked
+      ? updateTodo({ variables: { no: item.no, state: 'done' } })
+      : updateTodo({ variables: { no: item.no, state: 'ready' } })
   }
 
   useEffect(() => {

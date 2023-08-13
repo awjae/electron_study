@@ -1,3 +1,6 @@
 type TodoType = {
-  contents: string
+  contents?: string
+  date?: string
+  no?: number
+  state?: string
 }
