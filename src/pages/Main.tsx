@@ -32,7 +32,7 @@ const patchTodo = gql`
 
 function Main() {
   const { loading, error, data } = useQuery(getTodoList)
-  const [todoList, setTodoList] = useState<TodoType[]>([{ contents: '123' }])
+  const [todoList, setTodoList] = useState<Partial<TodoType>[]>([{ contents: '123' }])
   const [createTodoList] = useMutation(postTodoList)
   const [updateTodo] = useMutation(patchTodo)
 
@@ -49,6 +49,15 @@ function Main() {
   }
 
   const handleChangeReadyOrDone = (e: React.ChangeEvent<HTMLInputElement>, item: TodoType) => {
+    setTodoList((prevState) =>
+      prevState.map((todo) => {
+        if (todo.no === item.no) {
+          return { ...todo, state: e.target.checked ? 'done' : 'ready' }
+        }
+        return todo
+      }),
+    )
+
     e.target.checked
       ? updateTodo({ variables: { no: item.no, state: 'done' } })
       : updateTodo({ variables: { no: item.no, state: 'ready' } })

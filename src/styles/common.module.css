@@ -45,11 +45,18 @@
   background-color: #ffa500;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
+.todoItem.done {
+  background-color: #5fe280;
+}
 .todoItem input[type='checkbox'] {
   position: absolute;
   right: 15px;
 }
 .todoItem:hover {
   background-color: #fec252;
+  cursor: pointer;
+}
+.todoItem.done:hover {
+  background-color: #49ab61;
   cursor: pointer;
 }
