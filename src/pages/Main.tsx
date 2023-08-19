@@ -4,15 +4,16 @@ import styles from '../styles/common.module.css'
 import TodoList from '../components/TodoList'
 import { useMutation, useQuery } from '@apollo/client'
 import { getTodoList, patchTodo, postTodoList } from '../gql/todoAPI'
+import { appClose, handleAlwaysOnTop } from '../utils/electron'
 
 function Main() {
   const { loading, error, data } = useQuery(getTodoList)
-  const [todoList, setTodoList] = useState<Partial<TodoType>[]>([{ contents: '123' }])
+  const [todoList, setTodoList] = useState<TodoType[]>([{ contents: '123' }])
   const [createTodoList] = useMutation(postTodoList)
   const [updateTodo] = useMutation(patchTodo)
 
   const close = () => {
-    window.electron.ipcRenderer.send('close')
+    appClose()
   }
 
   const add = () => {
@@ -20,7 +21,7 @@ function Main() {
   }
 
   const handleChangeBtn = (e: React.ChangeEvent<HTMLInputElement>) => {
-    window.electron.ipcRenderer.send('handleAlwaysOnTop', e.target.checked)
+    handleAlwaysOnTop(e.target.checked)
   }
 
   const handleChangeReadyOrDone = (e: React.ChangeEvent<HTMLInputElement>, item: TodoType) => {
