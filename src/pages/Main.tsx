@@ -2,33 +2,8 @@ import React, { useEffect, useState } from 'react'
 import closeIcon from '../assets/cross-mark.png'
 import styles from '../styles/common.module.css'
 import TodoList from '../components/TodoList'
-import { useMutation, gql, useQuery } from '@apollo/client'
-
-const getTodoList = gql`
-  query {
-    getTodoList {
-      no
-      date
-      state
-      contents
-    }
-  }
-`
-const postTodoList = gql`
-  mutation createTodoList($contents: String!) {
-    createTodoList(contents: $contents) {
-      contents
-    }
-  }
-`
-const patchTodo = gql`
-  mutation updateTodo($no: Number!, $state: String!) {
-    updateTodo(no: $no, state: $state) {
-      no
-      state
-    }
-  }
-`
+import { useMutation, useQuery } from '@apollo/client'
+import { getTodoList, patchTodo, postTodoList } from '../gql/todoAPI'
 
 function Main() {
   const { loading, error, data } = useQuery(getTodoList)
