@@ -8,7 +8,7 @@ import { appClose, handleAlwaysOnTop } from '../utils/electron'
 
 function Main() {
   const { loading, error, data } = useQuery(getTodoList)
-  const [todoList, setTodoList] = useState<TodoType[]>([{ contents: '123' }])
+  const [todoList, setTodoList] = useState<TodoType[]>([])
   const [createTodoList] = useMutation(postTodoList)
   const [updateTodo] = useMutation(patchTodo)
 

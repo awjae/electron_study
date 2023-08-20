@@ -60,3 +60,15 @@
   background-color: #49ab61;
   cursor: pointer;
 }
+.todoItemDelBtn {
+  position: absolute;
+  top: -12px;
+  right: -12px;
+  display: inline-block;
+  text-indent: -99999px;
+  border: 0;
+  outline: 0;
+  background: url('/src/assets/cancel.png') 32px 32px no-repeat;
+  width: 32px;
+  height: 32px;
+}

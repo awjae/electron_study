@@ -16,6 +16,7 @@ function TodoList({ list, handleChange }: { list: TodoType[]; handleChange: Func
         <ListItem key={idx} className={classNames([styles.todoItem, styles[item.state]])}>
           <span>{item.contents}</span>
           <input type="checkbox" onChange={(e) => handleChange(e, item)} checked={item.state === 'done'} />
+          {item.state === 'done' && <button className={styles.todoItemDelBtn}>삭제</button>}
         </ListItem>
       ))}
     </List>
