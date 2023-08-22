@@ -5,12 +5,15 @@ import TodoList from '../components/TodoList'
 import { useMutation, useQuery } from '@apollo/client'
 import { getTodoList, patchTodo, postTodoList } from '../gql/todoAPI'
 import { appClose, handleAlwaysOnTop } from '../utils/electron'
+import Modal from '../_designSystem/Modal'
+import { Input } from '@mui/material'
 
 function Main() {
   const { loading, error, data } = useQuery(getTodoList)
   const [todoList, setTodoList] = useState<TodoType[]>([])
   const [createTodoList] = useMutation(postTodoList)
   const [updateTodo] = useMutation(patchTodo)
+  const [isOpenAddPop, setIsOpenAddPop] = useState(false)
 
   const close = () => {
     appClose()
@@ -58,10 +61,15 @@ function Main() {
       </header>
       <TodoList list={todoList} handleChange={handleChangeReadyOrDone}></TodoList>
       <footer>
-        <button className={styles.addBtn} onClick={add}>
+        <button className={styles.addBtn} onClick={() => setIsOpenAddPop(true)}>
           +
         </button>
       </footer>
+      {isOpenAddPop && (
+        <Modal open={isOpenAddPop} handleClick={() => {}}>
+          {<input type="text" />}
+        </Modal>
+      )}
     </div>
   )
 }
