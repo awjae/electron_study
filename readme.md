@@ -23,3 +23,7 @@
 2. AWS
 3. github Action
 4.
+
+## githuy action
+
+1. develop push 시 mater merge
