@@ -1,0 +1,22 @@
+name: Merge to Master on Push
+
+on:
+  push:
+    branches:
+      - develop
+
+jobs:
+  merge_to_master:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Merge to master
+        run: |
+          git config user.name "Your Username"
+          git config user.email "youremail@example.com"
+          git checkout master
+          git merge --no-ff develop -m "Merge develop into master"
+          git push origin master
