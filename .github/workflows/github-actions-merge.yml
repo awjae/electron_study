@@ -18,5 +18,5 @@ jobs:
           git config user.name "AW"
           git config user.email "djwotmd@gmail.com"
           git checkout master
-          git merge --no-ff develop -m "Merge develop into master"
+          git merge --no-ff develop -m "Merge develop into master v2"
           git push origin master
