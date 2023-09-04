@@ -26,4 +26,4 @@
 
 ## githuy action
 
-1. develop push 시 mater merge (test)
+1. develop push 시 mater merge (test) 2ck
