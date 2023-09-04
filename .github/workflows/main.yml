@@ -21,6 +21,5 @@ jobs:
           git clone https://github.com/awjae/electron_study.git
           git remote update
           git checkout main
-          git config pull.rebase false 
-          git pull origin develop --allow-unrelated-histories
+          git merge --no-ff develop -m "Merge develop into master"
           git push origin main
