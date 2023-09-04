@@ -1,0 +1,24 @@
+name: Merge to Master on Push
+
+on:
+  push:
+    branches:
+      - develop
+
+jobs:
+  merge_to_master:
+    runs-on: ubuntu-latest
+
+    steps:
+      - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
+
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Merge to master
+        run: |
+          git config user.name "AW"
+          git config user.email "djwotmd@gmail.com"
+          git checkout master
+          git merge --no-ff develop -m "Merge develop into master v2"
+          git push origin master
