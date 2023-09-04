@@ -26,4 +26,4 @@
 
 ## githuy action
 
-1. develop push 시 mater merge (test) 2차
+1. develop push 시 mater merge (test) (merge conflict error test)
