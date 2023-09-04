@@ -21,5 +21,5 @@ jobs:
           git clone https://github.com/awjae/electron_study.git
           git remote update
           git checkout main
-          git merge --no-ff develop -m "Merge develop into main"
+          git pull origin develop --allow-unrelated-histories
           git push origin main
