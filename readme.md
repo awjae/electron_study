@@ -22,7 +22,7 @@
 1. GraphQL
 2. AWS
 3. github Action
-4.
+4. docker
 
 ## githuy action
 
