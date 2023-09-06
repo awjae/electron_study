@@ -5,6 +5,9 @@
   "main": "main.cjs",
   "homepage": "./",
   "type": "module",
+  "engines": {
+    "node": "18.16.0"
+  },
   "proxy": "http://localhost:4000",
   "scripts": {
     "dev": "vite",
