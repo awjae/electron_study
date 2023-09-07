@@ -53,7 +53,7 @@ export default class PgPool {
 
       type Mutation {
         createTodoList(contents: String!): TodoList
-        updateTodo($no: Number!, $state: String!): TodoList
+        updateTodo(no: Int!, state: String!): TodoList
       }
     `)
     this.todoListRoot = {
@@ -69,7 +69,7 @@ export default class PgPool {
         return result[0]
       },
       updateTodo: async ({ no, state }) => {
-        const query = `UPDATE public.todolist SET state=$2 WHERE no = $1;`
+        const query = `UPDATE public.todolist SET state=$2 WHERE no = $1`
         const params = [no, state]
         const result = await this.runQuery(query, params)
         return result[0]
