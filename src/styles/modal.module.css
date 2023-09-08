@@ -1,0 +1,8 @@
+.addModal {
+  display: flex;
+  flex-direction: column;
+}
+.addModal > input {
+  height: 25px;
+  margin-bottom: 14px;
+}

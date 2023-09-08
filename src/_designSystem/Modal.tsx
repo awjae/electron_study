@@ -9,13 +9,13 @@ const style = {
   top: '50%',
   left: '50%',
   transform: 'translate(-50%, -50%)',
-  width: 'calc(100% - 40px)',
+  // width: 'calc(100% -  40px)',
   maxWidth: '250px',
-  height: '400px',
+  // height: '400px',
   bgcolor: 'background.paper',
   border: '2px solid #000',
   boxShadow: 24,
-  padding: 1.5,
+  padding: 2,
 }
 
 function ModalComp({
