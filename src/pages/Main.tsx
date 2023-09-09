@@ -21,8 +21,8 @@ function Main() {
     appClose()
   }
 
-  const add = () => {
-    createTodoList({ variables: { contents: addInput } })
+  const add = async () => {
+    await createTodoList({ variables: { contents: addInput } })
   }
 
   const handleChangeBtn = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -44,9 +44,9 @@ function Main() {
       : updateTodo({ variables: { no: item.no, state: 'ready' } })
   }
 
-  const handleAddModalConfirmBtn = () => {
-    add()
-    refetch()
+  const handleAddModalConfirmBtn = async () => {
+    await add()
+    await refetch()
     setIsOpenAddPop(false)
   }
 
