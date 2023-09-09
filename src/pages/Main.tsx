@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import closeIcon from '../assets/cross-mark.png'
 import styles from '../styles/common.module.css'
+import modalStyles from '../styles/modal.module.css'
 import TodoList from '../components/TodoList'
 import { useMutation, useQuery } from '@apollo/client'
 import { getTodoList, patchTodo, postTodoList } from '../gql/todoAPI'
@@ -9,18 +10,19 @@ import Modal from '../_designSystem/Modal'
 import { Input } from '@mui/material'
 
 function Main() {
-  const { loading, error, data } = useQuery(getTodoList)
+  const { loading, error, data, refetch } = useQuery(getTodoList)
   const [todoList, setTodoList] = useState<TodoType[]>([])
   const [createTodoList] = useMutation(postTodoList)
   const [updateTodo] = useMutation(patchTodo)
   const [isOpenAddPop, setIsOpenAddPop] = useState(false)
+  const [addInput, setAddInput] = useState('')
 
   const close = () => {
     appClose()
   }
 
-  const add = () => {
-    createTodoList({ variables: { contents: 'test' } })
+  const add = async () => {
+    await createTodoList({ variables: { contents: addInput } })
   }
 
   const handleChangeBtn = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -40,6 +42,12 @@ function Main() {
     e.target.checked
       ? updateTodo({ variables: { no: item.no, state: 'done' } })
       : updateTodo({ variables: { no: item.no, state: 'ready' } })
+  }
+
+  const handleAddModalConfirmBtn = async () => {
+    await add()
+    await refetch()
+    setIsOpenAddPop(false)
   }
 
   useEffect(() => {
@@ -67,7 +75,10 @@ function Main() {
       </footer>
       {isOpenAddPop && (
         <Modal open={isOpenAddPop} handleClick={() => {}}>
-          {<input type="text" />}
+          <div className={modalStyles.addModal}>
+            <input type="text" placeholder="할일 입력" value={addInput} onChange={(e) => setAddInput(e.target.value)} />
+            <button onClick={handleAddModalConfirmBtn}>추가</button>
+          </div>
         </Modal>
       )}
     </div>
