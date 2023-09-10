@@ -18,7 +18,7 @@ export const postTodoList = gql`
   }
 `
 export const patchTodo = gql`
-  mutation updateTodo($no: Number!, $state: String!) {
+  mutation updateTodo($no: Int!, $state: String!) {
     updateTodo(no: $no, state: $state) {
       no
       state
