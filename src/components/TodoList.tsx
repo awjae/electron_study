@@ -1,10 +1,14 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import styles from '../styles/common.module.css'
 import List from '../_designSystem/List'
 import ListItem from '../_designSystem/ListItem'
 import classNames from 'classnames'
 
 function TodoList({ list, handleChange }: { list: TodoType[]; handleChange: Function }) {
+  useEffect(() => {
+    console.log(list)
+  }, [list])
+
   return (
     // <ul>
     //   {list.map((item) => (
